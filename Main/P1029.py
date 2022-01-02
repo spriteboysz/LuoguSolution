@@ -3,27 +3,26 @@
 '''
 Author: Deean
 Date: 2021-10-28 23:26:18
-LastEditTime: 2021-10-28 23:56:35
+LastEditTime: 2022-01-02 21:37:18
 Description: 最大公约数和最小公倍数问题
 FilePath: P1029.py
 '''
 
 
-import math
+from math import gcd
 
 
 def func():
     x, y = map(int, input().strip().split())
     count = 0
-    for i in range(x, y + 1, x):
-        for j in range(x, y + 1, x):
-            if y % i == y % j == 0:
-                gcd = math.gcd(i, j)
-                if gcd == x and (i * j) / gcd == y:
-                    count += 1
-                    print(i, j)
-                    break
-    print(count)
+    flag = 0
+    for i in range(1, int((x * y) ** 0.5) + 1):
+        if (x * y) % i == 0 and gcd(i, (x * y) // i) == x:
+            count += 1
+            if i * i == x * y:
+                flag = 1
+
+    print(count * 2 - flag)
 
 
 if __name__ == '__main__':
