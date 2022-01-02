@@ -3,14 +3,10 @@
 '''
 Author: Deean
 Date: 2021-12-30 23:48:51
-LastEditTime: 2022-01-02 00:06:28
+LastEditTime: 2022-01-02 22:34:13
 Description: PRAVOKUTNI
 FilePath: P6341.py
 '''
-
-
-def distance2(x1, y1, x2, y2):
-    return (x1 - x2) ** 2 + (y1 - y2) ** 2
 
 
 def func():
@@ -18,6 +14,14 @@ def func():
     point = []
     for _ in range(n):
         point.append(list(map(int, input().strip().split())))
+
+    dic = {}
+
+    def distance2(x1, y1, x2, y2):
+        key = str([x1, y1, x2, y2])
+        if key not in dic.keys():
+            dic[key] = (x1 - x2) ** 2 + (y1 - y2) ** 2
+        return dic[key]
 
     count = 0
     for i in range(0, n - 2):
@@ -31,7 +35,6 @@ def func():
                                point[j][0], point[j][1])
                 if a2 + b2 == c2 or a2 + c2 == b2 or b2 + c2 == a2:
                     count += 1
-
     print(count)
 
 
