@@ -23,10 +23,7 @@ def func():
         carry, mod = divmod(int(a[i]) + int(b[i]) + carry, 10)
         c = str(mod) + c
 
-    if carry != 0:
-        print((str(carry) + c))
-    else:
-        print(c)
+    print((str(carry) + c) if carry != 0 else c)
 
 
 if __name__ == "__main__":
