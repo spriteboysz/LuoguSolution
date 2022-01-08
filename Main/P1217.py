@@ -7,32 +7,23 @@ Description: 回文质数
 FilePath: P1217.py
 '''
 
-
-import time
-
-
-def isPrime(n):
-    if n <= 1:
-        return False
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            return False
-    return True
+from math import ceil
 
 
 def func():
-    a, b = sorted(map(int, input().strip().split()))
-    for i in range(a, b + 1):
-        if len(str(i)) % 2 == 0 and i != 11:
-            continue
-        elif i % 2 == 0:
-            continue
-        elif str(i) == str(i)[::-1] and isPrime(i):
+    a, b = map(int, input().strip().split())
+    for i in [5, 7, 11]:
+        if a <= i <= b:
             print(i)
+    for i in range(10, 10000):
+        num = int(str(i)[:-1] + str(i)[::-1])
+        if a <= num <= b:
+            for j in range(2, ceil(num ** 0.5) + 1):
+                if num % j == 0:
+                    break
+            else:
+                print(num)
 
 
 if __name__ == '__main__':
-    start = time.time()
     func()
-    end = time.time()
-    print(end - start)
